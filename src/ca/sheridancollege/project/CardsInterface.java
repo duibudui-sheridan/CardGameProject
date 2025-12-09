@@ -20,5 +20,7 @@ public interface CardsInterface {
     
     boolean isEmpty();
     
+    void shuffle();
+    
     List<Card> getCards();
 }

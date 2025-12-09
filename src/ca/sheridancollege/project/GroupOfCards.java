@@ -3,51 +3,62 @@ package ca.sheridancollege.project;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 
 /**
  *
  * @author Ali
+ * @author degtiare
  */
-public class GroupOfCards {
+public class GroupOfCards implements CardsInterface{
 
     //The group of cards stored in an ArrayList
-    private ArrayList<Card> cards;
-    private int size;
+    private final ArrayList<Card> cards;
+    
 
     public GroupOfCards(int size) {
-        this.size = size;
         this.cards = new ArrayList<>(size);
     }
-
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
+    @Override
     public void shuffle() {
         Collections.shuffle(cards);
     }
-
-
-    public int getSize() {
-        return size;
+    @Override
+    public List<Card> getCards() {
+        return cards;
     }
 
-
-    public void setSize(int size) {
-        this.size = size;
+    @Override 
+    public boolean isEmpty() {
+        return cards.isEmpty();
+    }
+    @Override
+    public int size() {
+        return cards.size();
     }
 
-    public Card removeCard(int index) {
-        
-        return cards.remove(index);
-
+    @Override
+    public Card removeCard() {
+        if (cards.isEmpty()) {
+            return null;
+        }
+        return cards.remove(0);
     }
-public void addCards(ArrayList<Card> newCards) {
-    for (Card card : newCards) {
-        this.cards.add(card);
+//    
+//    public Card removeCard(int index) {
+//        
+//        return cards.remove(index);
+//
+//    }
+    @Override
+    public void addCard(Card card) {
+        cards.add(card);
     }
-}
+    
+    public void addCards(List<Card> newCards) {
+        cards.addAll(newCards);
+    }
     
 }
