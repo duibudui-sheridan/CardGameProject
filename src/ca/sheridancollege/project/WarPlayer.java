@@ -13,27 +13,25 @@ import java.util.ArrayList;
 import java.util.List;
 public class WarPlayer extends Player {
     
-    private CardsInterface hand;
+    private GroupOfCards hand;
     
-    public WarPlayer(String name, CardsInterface hand) {
+    public WarPlayer(String name, GroupOfCards hand) {
         super(name);
         this.hand = hand;
     }
     
     public Card drawCard() {
-        return hand.removeCard();
+        return hand.removeCard(0);
     }
 
-    public void collectCards(List<Card> cardsWon) {
-        for (Card c: cardsWon) {
-            hand.addCard(c);
-        }
+    public void collectCards(ArrayList<Card> cardsWon) {
+        this.hand.addCards(cardsWon);
     }
     
     public List<Card> drawFourCards() {
         List<Card> result = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
-            Card c = hand.removeCard();
+            Card c = hand.removeCard(0);
             if (c == null) break;
             result.add(c);
         }
@@ -41,15 +39,15 @@ public class WarPlayer extends Player {
     }
     
     public boolean hasEnoughCards(int count) {
-        return hand.size() >= count;
+        return hand.getSize() >= count;
     }
     
     public int getHandSize() {
-        return hand.size();
+        return hand.getSize();
     }
     
     public boolean hasCards() {
-        return !hand.isEmpty();
+        return hand.getSize()>0;
     }
     
     @Override
