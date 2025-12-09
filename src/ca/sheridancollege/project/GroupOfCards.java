@@ -55,4 +55,11 @@ public class GroupOfCards {
         this.size = size;
     }
 
+    public Card removeCard(int index) {
+        
+        return cards.remove(index);
+
+    }
+    
+    
 }//end class
